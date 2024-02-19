@@ -1,8 +1,12 @@
 <template>
   <div>
-    <input v-model="newValue" placeholder="Nuevo dato" />
-    <button @click="addItem">Agregar</button>
-    <h1>halo</h1>
+    <div class="campo-formulario">
+      <input class="input-formulario" v-model="newValue" placeholder="Nuevo dato" />
+    </div>
+    <div class="campo-formulario centrar-boton">
+      <button class="boton-enviar" @click="addItem">Agregar</button>
+    </div>
+
   </div>
 </template>
 
@@ -18,15 +22,62 @@ export default defineComponent({
   },
   methods: {
     addItem() {
-      // Validación de tipo de dato
       if (this.newValue && typeof this.newValue === 'string') {
         this.$emit('add-item', {
-          id: Date.now(), // Puedes generar IDs de manera más robusta
+          id: Date.now(),
           value: this.newValue,
         });
-        this.newValue = ''; // Limpiar el input después de agregar
+        this.newValue = '';
       }
     },
   },
 });
 </script>
+
+<style scoped>
+.centrado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.formulario {
+  width: 600px;
+  background: linear-gradient(to right, #ffffff 12%, #ffffff 90%, #ffffff 100%);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.campo-formulario {
+  margin-bottom: 20px;
+}
+
+.centrar-boton {
+  text-align:right;
+}
+
+.color {
+  color: #333;
+}
+
+.input-formulario {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 9px;
+}
+.boton-enviar {
+  background-color: rgb(193, 165, 10);
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+
+}
+
+</style>
+
