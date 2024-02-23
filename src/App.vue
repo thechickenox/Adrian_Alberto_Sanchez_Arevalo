@@ -5,7 +5,6 @@ import ProjectList from './components/ProyectDT/ProjectList.vue';
 
 <template>
   <header>
-    
   </header>
   <ProjectList>
     <template #header>

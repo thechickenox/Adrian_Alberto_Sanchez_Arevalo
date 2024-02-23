@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "examenu1",
-=======
-  "name": "login",
->>>>>>> origin/ExamenU1
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -17,10 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
     "pinia": "^2.1.7",
->>>>>>> origin/ExamenU1
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },
