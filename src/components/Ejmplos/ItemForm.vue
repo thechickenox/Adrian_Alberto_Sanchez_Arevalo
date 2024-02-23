@@ -6,34 +6,25 @@
     <div class="campo-formulario centrar-boton">
       <button class="boton-enviar" @click="addItem">Agregar</button>
     </div>
-
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref, defineEmits } from 'vue';
 
-export default defineComponent({
-  name: 'ItemForm',
-  data() {
-    return {
-      newValue: '',
-    };
-  },
-  methods: {
-    addItem() {
-      if (this.newValue && typeof this.newValue === 'string') {
-        this.$emit('add-item', {
-          id: Date.now(),
-          value: this.newValue,
-        });
-        this.newValue = '';
-      }
-    },
-  },
-});
+const emit = defineEmits(['add-item']);
+const newValue = ref('');
+
+const addItem = () => {
+  if (newValue.value && typeof newValue.value === 'string') {
+    emit('add-item', {
+      id: Date.now(),
+      value: newValue.value,
+    });
+    newValue.value = '';
+  }
+};
 </script>
-
 <style scoped>
 .centrado {
   display: flex;

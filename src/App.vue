@@ -1,49 +1,41 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import ItemList from './components/Ejmplos/ItemList.vue.vue';
 import ItemForm from './components/Ejmplos/ItemForm.vue';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    ItemList,
-    ItemForm,
-  },
-  data() {
-    return {
-      items: [
-        { id: 1, value: 'Ejemplo 1' },
-        { id: 2, value: 'Dato 2' },
-      ],
-    };
-  },
-  methods: {
-    handleItemClick() {
-    },
-    addItem(newItem: { id: number; value: string }) {
-      if (newItem.value && typeof newItem.value === 'string') {
-        if (!this.items.some((item) => item.value === newItem.value)) {
-          this.items.push(newItem);
-        }
-      }
-    },
-  },
-});
-</script>
+interface Item {
+  id: number;
+  value: string;
+}
 
+const items = ref<Item[]>([
+  { id: 1, value: 'Ejemplo 1' },
+  { id: 2, value: 'Dato 2' },
+]);
+
+const handleItemClick = () => {
+};
+
+const addItem = (newItem: Item) => {
+  if (newItem.value && typeof newItem.value === 'string') {
+    if (!items.value.some((item) => item.value === newItem.value)) {
+      items.value.push(newItem);
+    }
+  }
+};
+</script>
 
 <template>
   <div class="centrado">
     <div class="contenedor-formulario">
       <div class="formulario">
         <h1 class="color">Lista de Datos</h1>
-        <item-list :data="items" @item-clicked="handleItemClick" />
-        <item-form @add-item="addItem" />
+        <ItemList :data="items" @item-clicked="handleItemClick" />
+        <ItemForm @add-item="addItem" />
       </div>
     </div>
   </div>
 </template>
-
 
 
 <style scoped>
